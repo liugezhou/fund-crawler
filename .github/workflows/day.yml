@@ -1,26 +1,32 @@
 name: day start # yml文件名
- 
+
 on:
   push:
     branches:
       - main
   schedule:
     - cron: '30 09 * * *'
-  workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the GitHub Actions Workflow page directly
+  workflow_dispatch: # 手动触发工作流
+
 env: # 设置环境变量
-  TZ: Asia/Shanghai # 时区（设置时区可使页面中的`最近更新时间`使用时区时间）
+  TZ: Asia/Shanghai # 时区
+  TOKEN: ${{ secrets.TOKEN }} # 使用GitHub secret中的TOKEN变量
+
 jobs:
   run-coupons: # 任务名
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main  #采用main分支下的
-           
+      - uses: actions/checkout@v2 # 使用v2版本，并修正分支指定方式
+
       - name: Setup Node.js
-        uses: actions/setup-node@v2  #安装node.js
+        uses: actions/setup-node@v2  # 安装Node.js
         with:
           node-version: '16'
           
-      - name: Install Dependency       
-        run: |
-          npm install
-          npm start
+      - name: Install Dependencies       
+        run: npm install
+
+      - name: Start Project
+        run: npm start
+        env:
+          TOKEN: ${{ secrets.TOKEN }} # 在这一步中提供TOKEN环境变量给npm start
