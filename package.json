@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.0.6",
+    "axios": "^1.6.7",
     "chalk": "^4.1.0",
     "cheerio": "^0.22.0",
+    "cors": "^2.8.5",
     "crawler": "^1.2.2",
-    "dateformat": "^3.0.3"
-  },
-  "devDependencies": {}
+    "dateformat": "^3.0.3",
+    "express": "^4.18.3"
+  }
 }
