@@ -3,8 +3,7 @@ const { GitHubDB } = require('./dao/githubdb')
 const Log = require('./log')
 
 function getGitHubPersonalAccessToken() {
-    // return process.env.TOKEN;
-    return "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";
+    return process.env.TOKEN;
 }
 
 const githubDB = new GitHubDB({
