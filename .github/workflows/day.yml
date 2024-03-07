@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
-  schedule:   
-    - cron: '0 9 * * *'   # 定时运行的时间，国际标准时间，北京时间要+8
- 
+  schedule:
+    - cron: '30 09 * * *'
+  workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the GitHub Actions Workflow page directly
+env: # 设置环境变量
+  TZ: Asia/Shanghai # 时区（设置时区可使页面中的`最近更新时间`使用时区时间）
 jobs:
   run-coupons: # 任务名
     runs-on: ubuntu-latest
@@ -16,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2  #安装node.js
         with:
-          node-version: '14'
+          node-version: '16'
           
       - name: Install Dependency       
         run: |
